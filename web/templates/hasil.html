@@ -1,0 +1,14 @@
+{% extends 'home.html'%}
+{%block content%}
+<h1 class="font-weight-normal text-center">
+    {% block title %}Hasil{% endblock %}</h1> 
+  <ul class="list-group">
+    {%for k,v in hasil.items()%}
+    <li class="list-group-item">
+      <h4 style="display: inline-block">{{k}}:</h4>
+      <h4 style="display: inline-block" class="font-weight-normal text-center">{{v}}</h4>
+    </li>
+    {%endfor%}
+  </ul>
+  {%endblock%}
+</h1>

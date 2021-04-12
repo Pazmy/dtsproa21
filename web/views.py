@@ -13,24 +13,35 @@ def home():
         gaji = request.form.get("gaji")
 
         validate_status = ["K", "TK", "k", "tk"]
+        jika_float = None
+        try:
+            jika_float = type(float(name))
+        except:
+            jika_float = ""
 
-        if len(name) < 4:
+        if jika_float == float:
+            flash("field nama tidak boleh angka", category="error")
+            return redirect(url_for("views.home")) 
+        elif len(name) < 4:
             flash("nama terlalu pendek, isi minimal 4 karakter", category="error")
             return redirect(url_for("views.home"))
         elif status not in validate_status:
             flash("field status isi dengan 'K' atau 'TK'", category="error")
             return redirect(url_for("views.home"))
-        elif int(jumlah_tanggungan) > 3:
+        elif jumlah_tanggungan == "":
+            flash("field jumlah tanggungan harap di isi",category="error")
+            return redirect(url_for("views.home"))
+        elif not jumlah_tanggungan.isnumeric() or int(jumlah_tanggungan) > 3:
             flash(
-                "field jumlah tanggungan tidak boleh kosong dan tidak boleh lebih dari 3",
+                "field jumlah tanggungan harap di isi dengan angka dan tidak boleh lebih dari 3",
                 category="error",
             )
             return redirect(url_for("views.home"))
         elif gaji == "":
             flash("field gaji harap di isi", category="error")
             return redirect(url_for("views.home"))
-        elif gaji.isalpha():
-            flash("field gaji harap di isi dengan angka", category="error")
+        elif not gaji.isnumeric():
+            flash("field gaji harap di isi dengan angka tanpa karakter lain", category="error")
             return redirect(url_for("views.home"))
         else:
             hasil = hitung(name, status, jumlah_tanggungan, gaji)

@@ -20,7 +20,7 @@ def home():
         elif status not in validate_status:
             flash("field status isi dengan 'K' atau 'TK'", category="error")
             return redirect(url_for("views.home"))
-        elif int(jumlah_tanggungan) > 3 or int(jumlah_tanggungan) == 0:
+        elif int(jumlah_tanggungan) > 3:
             flash(
                 "field jumlah tanggungan tidak boleh kosong dan tidak boleh lebih dari 3",
                 category="error",
@@ -34,7 +34,7 @@ def home():
             return redirect(url_for("views.home"))
         else:
             hasil = hitung(name, status, jumlah_tanggungan, gaji)
-            print(hasil)
+          
             return render_template("hasil.html", hasil=hasil)
     else:
         return render_template("input.html")

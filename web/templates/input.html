@@ -1,8 +1,26 @@
 {% extends 'home.html'%} {%block content%}
-<h1 class="font-weight-normal text-center">
+<div class="d-flex flex-column justify-content-center mb-5">
+  <h1 class="text-lg-center font-weight-bold px-3">
+    Hitung Pajak Penghasilan gampang langsung dari website.
+  </h1>
+  <a
+    href="/#form"
+    class="btn btn-dark align-middle align-self-center"
+    style="flex: 1 1 auto"
+    >Coba Sekarang</a
+  >
+
+  <img
+    src="{{ url_for('static', filename='hero.png') }}"
+    class="w-75 block mx-auto mt-4"
+    alt=""
+    style="max-width: 50%"
+  />
+</div>
+<h2 class="font-weight-bold mt-3 text-center">
   {% block title %}Hitung PPh21 {% endblock %}
-</h1>
-<form method="POST" action="/">
+</h2>
+<form method="POST" action="/" id="form">
   <div class="form-group">
     <label for="name">Nama</label>
     <input
